@@ -1,0 +1,47 @@
+{
+    "1": [
+        {
+            "name": "Powergrid",
+            "points": [
+                "Contributed back-end experience and developed APIs performing authentication and authorization levels, social signups, automated emails and SMS, safe stripe payments and gamification of user levels.",
+                "Managed all project and web strategic planning for the entire team.",
+                "Applied various skills to evaluate, design, implement and optimize databases and database applications."
+            ]
+        },
+        {
+            "name": "Sacred Groves",
+            "points": [
+                "Contributed back-end experience and developed APIs performing authentication and authorization levels, social signups, automated emails and SMS, safe stripe payments and gamification of user levels.",
+                "Managed all project and web strategic planning for the entire team.",
+                "Applied various skills to evaluate, design, implement and optimize databases and database applications."
+            ]
+        },
+        {
+            "name": "Telangana Startup Portal",
+            "points": [
+                "An ERP web application where startups will upload documents and their startup information and it will be judged and financed by the Telangana Government at various authorization levels.",
+                "Developed User Chat Interfaces, Social Signup and Payment Modules.",
+                "The database covers 3 levels of authority viz Agents who review application, the project manager who add agents and do final review and admin who manage everything related to the web application."
+            ]
+        }
+    ],
+    "2": [
+        {
+            "name": "Undiffer",
+            "points": [
+                "Design and development of Serverless application and APIs, databases and CRUD APIs.",
+                "APIs for third party platform integrations like Slack, GitHub, Google Contact and Google Chat APIs"
+            ]
+        }
+    ],
+    "3": [
+        {
+            "name": "Practically",
+            "points": [
+                "Created landing pages, dashboards, and web applications using HTML, CSS, Bootstrap, and JS programming languages.",
+                "Created web materials to be used in marketing and email campaigns.",
+                "Analyzed and developed technical and functional specifications for databases."
+            ]
+        }
+    ]
+}

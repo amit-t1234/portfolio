@@ -1,0 +1,16 @@
+{
+    "help": [
+        "Available Commands:",
+        "",
+        "about       About Me.",
+        "clear       Clear Terminal.",
+        "contact     Contact Form."
+    ],
+    "clear": [
+        "Welcome to the Tour Terminal (Under Development)!",
+        "Type \"help\" for the list of available commands"
+    ],
+    "contact": [
+
+    ]
+}

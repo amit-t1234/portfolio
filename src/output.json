@@ -1,14 +1,17 @@
 {
     "help": [
-        "Available Commands:",
-        "",
-        "about       About Me.",
-        "clear       Clear Terminal.",
-        "contact     Contact Form."
+        { "data": "Available Commands:" },
+        { "data": "" },
+        { "data": "about       About Me." },
+        { "data": "clear       Clear Terminal." },
+        { "data": "contact     Contact Form." }
+    ],
+    "about": [
+        { "data": "B.E in Computer Science, Lead API and Web application/website developer with 4+ years of experience in leading and developing software applications with architecture and design direction, code quality assurance, and faster delivery. Proficient in NodeJS, React, Graphql, PHP, Postgresql, Mongo DB, Solidity Blockchain and many more." }
     ],
     "clear": [
-        "Welcome to the Tour Terminal (Under Development)!",
-        "Type \"help\" for the list of available commands"
+        { "data": "Welcome to the Tour Terminal (Under Development)!" },
+        { "data": "Type \"help\" for the list of available commands" }
     ],
     "contact": [
 

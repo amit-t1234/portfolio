@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import Footer from './components/Footer';
 import NavigationBar from './components/Navbar';
 import Home from './components/Pages/Home';

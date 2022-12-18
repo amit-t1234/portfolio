@@ -1,7 +1,7 @@
 const Languages = () => {
     return ( 
         <>
-            <section className="language-container">
+            <section className="language-container d-lg-block d-md-none d-none">
                 <div className="main-guy">
                     {/* <img src="/Languages/guy.png" alt="Amit Thakur" /> */}
                 </div>

@@ -3,44 +3,63 @@ import { useState } from 'react';
 import output from '../../output.json';
 
 const TerminalController = ({ darkMode }) => {
-    let prompt = 'iamthakuramit@desktop:~$';
-    // const [prompt, setPrompt] = useState('iamthakuramit@desktop:~$');
+    const [prompt, setPrompt] = useState('iamthakuramit@desktop:~$');
     const [history, setHistory] = useState(output["clear"]);
-    let contactFormStep = 0;
-    let email = null;
+    const [step, setStep] = useState(0);
+    const [email, setEmail] = useState(null);
     let message = null;
 
-    const emailBackend = (email, message) => {
-        console.log(email, message);
+    const emailBackend = async (email, message) => {
+        try {
+            const data = await fetch('https://sheet.best/api/sheets/a6b602e8-b060-4386-b32f-f4ee270a3625', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, message, created_at: new Date() }),
+            });
+            console.log(data);
+        } catch {
+            console.error('Error:', error);
+        }
     }
 
-    const runCommand = (terminalInput) => {
+    const runCommand = async (terminalInput) => {
         const current = [];
-        switch (terminalInput) {
-            case "help":
-                current.push(...history, `input:${terminalInput}`, ...output[terminalInput]);
-                break;
-            case "clear":
-                break;
-            case "contact":
-                current.push(...history, `input:${terminalInput}`)
-                prompt = 'Enter your Email:';
-                contactFormStep = 1;
-                break;
-            default:
-                if (contactFormStep === 1) {
-                    email = terminalInput;
-                    current.push(...history, `input:${terminalInput}`);
-                    prompt = 'Enter your Message:';
-                } else if (contactFormStep === 2) {
-                    message = terminalInput;
-                    current.push(...history, `input:${terminalInput}`);
-                    prompt = 'iamthakuramit@desktop:~$';
-                    emailBackend(email, message);
-                } else {
-                    current.push(...history, `input:${terminalInput}`, `${terminalInput} is not recognized as an internal or external command`, `Type "help" for the list of available commands`)
-                }
+        if (step === 1) {
+            setEmail(terminalInput);
+            current.push(...history, { type: "input", data: terminalInput, prompt: prompt });
+            setPrompt('Enter your Message:');
+            setStep(2);
+        } else if (step === 2) {
+            message = terminalInput;
+            await emailBackend(email, message);
+            current.push(...history, { type: "input", data: terminalInput, prompt: prompt }, { data: 'Contact form successfully submitted!' });
+            setPrompt('iamthakuramit@desktop:~$');
+            setStep(0);
+        } else {
+            switch (terminalInput) {
+                case "":
+                    current.push(...history, { type: "input", data: terminalInput, prompt: prompt });
+                    break;
+                case "help":
+                    current.push(...history, { type: "input", data: terminalInput, prompt: prompt }, ...output[terminalInput]);
+                    break;
+                case "about":
+                    current.push(...history, { type: "input", data: terminalInput, prompt: prompt }, ...output[terminalInput]);
+                    break;
+                case "clear":
+                    break;
+                case "contact":
+                    current.push(...history, { type: "input", data: terminalInput, prompt: prompt })
+                    setPrompt('Enter your Email:');
+                    setStep(1);
+                    break;
+                default:
+                    current.push(...history, { type: "input", data: terminalInput, prompt: prompt }, { data: `${terminalInput} is not recognized as an internal or external command` }, { data: `Type "help" for the list of available commands` })
+            }
         }
+        
         setHistory(current);
     }
     // Terminal has 100% width by default so it should usually be wrapped in a container div
@@ -50,7 +69,7 @@ const TerminalController = ({ darkMode }) => {
                 <TerminalOutput>
                     {
                         history.map(line => (
-                            line.indexOf('input:') === 0 ? <div className="react-terminal-line react-terminal-input" data-terminal-prompt={prompt}>{ line.replace('input:', '') }</div>: <p className='swap code bg-transparent mb-1'>{ line }</p>
+                            line.type === 'input' ? <div className="react-terminal-line react-terminal-input" data-terminal-prompt={line.prompt}>{ line.data }</div>: <p className='swap code bg-transparent mb-1'>{ line.data }</p>
                         ))
                     }
                 </TerminalOutput>

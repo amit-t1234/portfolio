@@ -4,30 +4,38 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
-// import writeExcel from "../scripts/write-excel";
 
 const Contact = () => {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
+    const [show, setShow] = useState(false);
 
-    const contactSubmit = async () => {
-        try {
-            // const response = await writeExcel([{
-            //     email, message,
-            // }])
-            // console.log(response);
-            return (
-                <Alert variant="success">
-                    Detailed submitted Successfully!
-                </Alert>
-            )
-        } catch (error) {
-            console.log(error);
-        }
+    const contactSubmit = () => {
+        fetch('https://sheet.best/api/sheets/a6b602e8-b060-4386-b32f-f4ee270a3625', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, message, created_at: new Date() }),
+        }).then((data) => {
+                console.log('Success:', data);
+                setShow(true);
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     return (
-        <section className="light-bg">
+        <section id="contact" className="light-bg">
+            {
+                show && (
+                        <div style={{ position: "fixed", top: '10px', left: '50%', right: 0, zIndex: 999, transform: 'translate(-50%, 0%)' }}>
+                            <Alert variant="success" onClose={() => setShow(false)} dismissible>
+                                Detailed submitted Successfully!
+                            </Alert>
+                        </div>
+                    )
+            }
             <Row>
                 <Col>
                     <Form className="ms-4">

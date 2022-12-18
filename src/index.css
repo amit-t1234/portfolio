@@ -38,6 +38,7 @@ h1, h2, h3, h4, h5, h6, p {
 .swap {
   color: var(--white) !important;
   background-color: var(--light-black) !important;
+  white-space: break-spaces;
 }
 .white {
   color: var(--white);
@@ -87,8 +88,6 @@ button {
   width: 100px;
   display: inline-block;
   text-align: left;
-  top: 50%;
-  transform: translate(0, -50%);
 }
 .checkbox {
   display: none;

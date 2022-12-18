@@ -7,7 +7,7 @@ const AboutCard = (props) => {
             <ul>
                 {
                     props.descriptions.map(description => (
-                        <li className="swap bg-transparent code">{ description }</li>
+                        <li key={description} className="swap bg-transparent code">{ description }</li>
                     ))
                 }
             </ul>
